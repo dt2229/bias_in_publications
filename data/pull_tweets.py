@@ -12,8 +12,13 @@ headers = {
     'Authorization': f"Bearer {BEARER_TOKEN}",
 }
 
+# params = {
+#     'query': 'from:foxnews',
+#     'max_results': '10'
+# }
+
 params = {
-    'query': 'from:foxnews',
+    'query': 'from:nytimes',
     'max_results': '10'
 }
 
