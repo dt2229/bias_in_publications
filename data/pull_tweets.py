@@ -1,9 +1,7 @@
 import os
-
 import requests
 import csv
 import time
-
 
 
 BEARER_TOKEN = os.getenv('TWITTER_BEARER')
@@ -37,7 +35,7 @@ def connect_to_endpoint():
                 params['next_token'] = next_token
             response = requests.get('https://api.twitter.com/2/tweets/search/recent', params=params, headers=headers)
             json = response.json()
-            print(response.json())
+            print(json)
             meta = json['meta']
             if 'next_token' in meta.keys():
                 next_token = meta['next_token']
