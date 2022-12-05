@@ -94,6 +94,7 @@ def follow_links(csv_file_to_read, csv_file_to_write, outlet, sub_list, cookies)
                     cookies)
             # return
             i = 0
+            pull = False
             for row in reader:
                 print('-------------------------------------------------------------------')
                 print(f"pulling link text for tweet number: {i}\n")
@@ -101,11 +102,16 @@ def follow_links(csv_file_to_read, csv_file_to_write, outlet, sub_list, cookies)
 
                 print(f'length of tweet: {len(row)}')
                 for tweet in row:
-                    print(tweet)
-                    if i <= 29:
-                        i += 1
-                        continue
+                    # if i <= 29:
+                    #     i += 1
+                    #     continue
                     i += 1
+                    if tweet == 'New car prices are finally coming down. A little, anyway. https://t.co/GRlQxrgEua':
+                       pull = True
+                    if not pull:
+                        continue
+                    print(tweet)
+
                     # this will pull all links in the tweet, so we might get some external links
                     # that the tweet is referencing, in addition to the link to the full article of
                     # the tweet, but we think this is ok because the linked article is likely still
@@ -133,8 +139,8 @@ if __name__ == "__main__":
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     # change this to toggle between fox and nyt
     # outlet = 'fox'
-    outlet = 'nyt'
-    # outlet = 'cnn'
+    # outlet = 'nyt'
+    outlet = 'cnn'
     # outlet = 'npr'
 
     if outlet == 'fox':
@@ -172,7 +178,6 @@ if __name__ == "__main__":
         csv_file_to_read = 'cnn_tweets_1668521533_21986.csv'
         csv_file_to_write = f'cnn_tweets_link_text_{time.time()}.csv'
         sub_list = []
-        # nyt cookies
         cookies = {}
     elif outlet == 'npr':
         csv_file_to_read = 'npr_tweets_1668521713_4138281.csv'
