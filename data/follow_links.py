@@ -106,7 +106,7 @@ def follow_links(csv_file_to_read, csv_file_to_write, outlet, sub_list, cookies)
                     #     i += 1
                     #     continue
                     i += 1
-                    if tweet == 'New car prices are finally coming down. A little, anyway. https://t.co/GRlQxrgEua':
+                    if 'Rahel Solomon breaks down the lates' in tweet:
                        pull = True
                     if not pull:
                         continue
